@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionErrorTarjetaTitle"
+        style="@style/StyleTextPrimaryLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_cambio_clave" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionErrorTitle"
+        style="@style/StyleTextPrimaryLargeError"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txvCambioClaveTransactionErrorTarjetaTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_error" />
+
+    <ImageView
+        android:id="@+id/imvCambioClaveTransactionErrorTarjetaStripeCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionErrorTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:src="@mipmap/stripe_card" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionErrorMensaje"
+        style="@style/StyleTextPrimaryLargeError"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/imvCambioClaveTransactionErrorTarjetaStripeCard"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_error" />
+
+    <Button
+        android:id="@+id/btnCambioClaveTransactionErrorTarjetaBotonSalir"
+        style="@style/StyleButtonExit"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvCambioClaveTransactionErrorMensaje"
+        android:layout_marginTop="@dimen/appMarginTop"
+        android:text="@string/general_text_button_salir" />
+</RelativeLayout>
+

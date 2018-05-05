@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Estilos de los textos usados en la aplicacion-->
+
+    <style name="StyleTextPrimaryExtraSmall">
+        <item name="android:textColor">@color/appColorPrimaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeXs</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextPrimarySmall">
+        <item name="android:textColor">@color/appColorPrimaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeSm</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextPrimaryMedium">
+        <item name="android:textColor">@color/appColorPrimaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeMd</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextPrimaryLarge">
+        <item name="android:textColor">@color/appColorPrimaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeLg</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextPrimaryLargeError">
+        <item name="android:textColor">@color/appColorClose</item>
+        <item name="android:textSize">@dimen/appTxtSizeLg</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextPrimaryLargeSuccess">
+        <item name="android:textColor">@color/appColorPrimaryDark</item>
+        <item name="android:textSize">@dimen/appTxtSizeLg</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextSecondaryMediumSuccess">
+        <item name="android:textColor">@color/appColorPrimaryDark</item>
+        <item name="android:textSize">@dimen/appTxtSizeMd</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <!--Estilos de Texto Secundarios App -->
+
+    <style name="StyleTextSecondarySmall">
+        <item name="android:textColor">@color/appColorSecondaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeSm</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextSecondaryMedium">
+        <item name="android:textColor">@color/appColorSecondaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeMd</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <style name="StyleTextSecondaryLarge">
+        <item name="android:textColor">@color/appColorSecondaryText</item>
+        <item name="android:textSize">@dimen/appTxtSizeLg</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
+    <!--Estilos de los campos de contraseña usados en la aplicacion-->
+
+    <style name="StyleInputPrimary">
+        <item name="android:longClickable">false</item>
+        <item name="android:textIsSelectable">false</item>
+        <item name="android:textColor">@color/appColorWhite</item>
+        <item name="android:textSize">@dimen/appTxtSizeLg</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorBlack</item>
+    </style>
+
+    <style name="StylePassPrimary" parent="StyleInputPrimary">
+        <item name="android:inputType">numberPassword</item>
+    </style>
+
+    <!--Estilos de los campos de ingreso numerico usados en la aplicacion-->
+
+    <style name="StyleValueNumberPrimary" parent="StyleInputPrimary">
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="StyleValueTextPrimary" parent="StyleInputPrimary">
+        <item name="android:inputType">text</item>
+    </style>
+
+    <!--Estilos de Texto para el Splash -->
+
+    <style name="StyleTextSplashScreenTitle" parent="StyleTextPrimaryLarge">
+        <item name="android:textColor">@color/appColorPrimary</item>
+    </style>
+
+    <style name="StyleTextSplashScreenInfo">
+        <item name="android:textColor">@color/appColorAccent</item>
+    </style>
+
+</resources>

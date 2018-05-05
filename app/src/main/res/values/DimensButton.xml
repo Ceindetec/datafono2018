@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuracion dimensiones de las botones de la aplicacion -->
+
+    <dimen name="appBtnSizeWidthSm">60dp</dimen>
+    <dimen name="appBtnSizeWidthMd">90dp</dimen>
+    <dimen name="appBtnSizeWidthLg">120dp</dimen>
+
+    <dimen name="appBtnSizeHeightSm">60dp</dimen>
+    <dimen name="appBtnSizeHeightMd">90dp</dimen>
+    <dimen name="appBtnSizeHeightLg">120dp</dimen>
+
+    <dimen name="appBtnSizeTextLg">200px</dimen>
+
+</resources>

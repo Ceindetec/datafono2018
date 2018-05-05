@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionClaveDispositivoTitle"
+        style="@style/StyleTextPrimaryLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_anulacion" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionClaveAdministradorClave"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionClaveDispositivoTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_clave_administrador" />
+
+    <EditText
+        android:id="@+id/edtAnulacionTransactionClaveAdministradorContenidoClave"
+        style="@style/StylePassPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionClaveAdministradorClave"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:maxLength="4" />
+
+    <Button
+        android:id="@+id/btnAnulacionTransactionClaveAdministradorBotonCancelar"
+        style="@style/StyleButtonCancel"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/edtAnulacionTransactionClaveAdministradorContenidoClave"
+        android:text="@string/general_text_button_cancelar" />
+
+    <Button
+        android:id="@+id/btnAnulacionTransactionClaveAdministradorBotonAceptar"
+        style="@style/StyleButtonAccept"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/edtAnulacionTransactionClaveAdministradorContenidoClave"
+        android:text="@string/general_text_button_aceptar" />
+
+
+</RelativeLayout>

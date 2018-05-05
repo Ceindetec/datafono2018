@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuración textos de la interfaz de la aplicacion -->
+
+    <!-- Textos usados en la Report Screen -->
+
+    <string name="report_text_button_reimpresion">Reimpresión Recibo</string>
+    <string name="report_text_button_detalle">Reporte Detalle</string>
+    <string name="report_text_button_general">Reporte General</string>
+    <string name="report_text_button_cierre">Cierre de Lote</string>
+
+    <!-- Titulos de vistas -->
+    <string name="report_text_title_reimpresion_recibo">Reimpresión Recibo</string>
+    <string name="report_text_title_reporte_detalle">Reporte Detalle</string>
+    <string name="report_text_title_reporte_general">Reporte General</string>
+    <string name="report_text_title_cierre_lote">Cierre Lote</string>
+
+    <!-- Subtitulos de vistas -->
+    <string name="report_text_subtitle_verificacion_datos">Verifique datos del cierre:</string>
+
+
+    <!-- Textos de botones -->
+    <string name="report_text_button_ultimo_recibo">Último Recibo</string>
+    <string name="report_text_button_numero_de_cargo">Número de Cargo</string>
+    <string name="report_text_button_imprimir_reporte">Imprimir Reporte</string>
+
+    <!-- Textos adicionales -->
+
+    <string name="report_text_ingeresar_numero_cargo">Ingrese el número de cargo:</string>
+    <string name="report_text_numero_cargo">Número de cargo:</string>
+    <string name="report_text_ingeresar_clave_dispositivo">Ingrese contraseña del dispositivo</string>
+    <string name="report_text_ingeresar_clave_administrador">Ingrese contraseña del Administrador</string>
+    <string name="report_text_valor_ventas">Valor de las ventas</string>
+    <string name="report_text_valor_anulaciones">Valor de las anulaciones</string>
+
+    <!-- Textos adicionales mensajes -->
+    <string name="report_text_message_No_existen_recibo_num_cargo">No existen un Recibo con este número de Cargo</string>
+    <string name="report_text_message_No_existen_recibos">No existen transacciones para generar el reporte</string>
+    <string name="report_text_message_clave_admin_incorrecta">La clave del administrador es incorrecta</string>
+
+
+</resources>

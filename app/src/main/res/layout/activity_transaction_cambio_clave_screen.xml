@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frlPgbHldTransactionCambioClave"
+        style="@style/StyleProgressbarHolder"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/pgbTransactionCambioClave"
+            style="@style/StyleProgressbar" />
+    </FrameLayout>
+
+    <!--Header de los modulos-->
+    <include
+        android:id="@+id/headerContent"
+        layout="@layout/content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/appMarginBottom" />
+
+    <include
+        android:id="@+id/bodyContentCambioClaveNumeroDocumento"
+        layout="@layout/content_transaction_cambiar_clave_paso_numero_documento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="visible" />
+
+    <include
+        android:id="@+id/bodyContentCambioClaveDesliceTarjeta"
+        layout="@layout/content_transaction_cambiar_clave_paso_deslice_tarjeta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentCambioClaveDesliceTarjetaIncorrecta"
+        layout="@layout/content_transaction_cambiar_clave_paso_lectura_incorrecta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentCambioClavePassActual"
+        layout="@layout/content_transaction_cambiar_clave_paso_pass_actual"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentCambioClavePassNueva"
+        layout="@layout/content_transaction_cambiar_clave_paso_pass_nuevo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentCambioClaveErrorTarjeta"
+        layout="@layout/content_transaction_cambiar_clave_paso_error_en_tarjeta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentCambioClaveSuccessTarjeta"
+        layout="@layout/content_transaction_cambiar_clave_paso_cambio_exitoso"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+</RelativeLayout>

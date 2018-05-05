@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frlPgbHldTransactionAnulacion"
+        style="@style/StyleProgressbarHolder"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/pgbTransactionAnulacion"
+            style="@style/StyleProgressbar" />
+    </FrameLayout>
+
+    <!--Header de los modulos-->
+    <include
+        android:id="@+id/headerContent"
+        layout="@layout/content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/appMarginBottom" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionClaveAdministrador"
+        layout="@layout/content_transaction_anulacion_paso_clave_administrador"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionNumeroDocumento"
+        layout="@layout/content_transaction_anulacion_paso_numero_documento"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionNumeroCargo"
+        layout="@layout/content_transaction_anulacion_paso_numero_cargo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionVerificacionValor"
+        layout="@layout/content_transaction_anulacion_paso_verificacion_valor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionDesliceTarjeta"
+        layout="@layout/content_transaction_anulacion_paso_deslice_tarjeta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionLecturaIncorrecta"
+        layout="@layout/content_transaction_anulacion_paso_lectura_incorrecta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionPassUsuario"
+        layout="@layout/content_transaction_anulacion_paso_pass_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionTransaccionExitosa"
+        layout="@layout/content_transaction_anulacion_paso_transaccion_exitosa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentAnulacionTransaccionErronea"
+        layout="@layout/content_transaction_anulacion_paso_transaccion_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+</RelativeLayout>

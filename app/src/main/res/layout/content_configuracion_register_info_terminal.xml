@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterInfoTitle"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:layout_marginTop="@dimen/appMarginBottom"
+        android:text="@string/configuration_text_title_configuracion_terminal" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterEstablecimineto"
+        style="@style/StyleTextPrimaryMedium"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterInfoTitle"
+        android:text="@string/configuration_text_mostrar_establesimiento" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterEstableciminetoContenido"
+        style="@style/StyleTextPrimarySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterEstablecimineto"
+        android:text="@string/configuration_text_exitosa" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterSucursal"
+        style="@style/StyleTextPrimaryMedium"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterEstableciminetoContenido"
+        android:text="@string/configuration_text_mostrar_sucursal" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterSucursalContenido"
+        style="@style/StyleTextPrimarySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterSucursal"
+        android:text="@string/configuration_text_exitosa" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterCodigoTerminal"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterSucursalContenido"
+        android:text="@string/configuration_text_mostrar_Terminal" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterCodigoTerminalContenido"
+        style="@style/StyleTextPrimarySmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterCodigoTerminal"
+        android:layout_marginBottom="15dp"
+        android:text="@string/configuration_text_exitosa" />
+
+    <TextView
+        android:id="@+id/txvConfiguracionRegisterPregunta"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvConfiguracionRegisterCodigoTerminalContenido"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/appMarginBottom"
+        android:text="@string/configuration_text_mostrar_esta_seguro_datos" />
+
+    <Button
+        android:id="@+id/btnConfiguracionRegisterInfoTerminalBotonCancelar"
+        style="@style/StyleButtonCancel"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/txvConfiguracionRegisterPregunta"
+        android:text="@string/configuration_text_mostrar_no"/>
+
+    <Button
+        android:id="@+id/btnConfiguracionRegisterInfoTerminalBotonAceptar"
+        style="@style/StyleButtonAccept"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvConfiguracionRegisterPregunta"
+        android:text="@string/configuration_text_mostrar_si"/>
+
+
+</RelativeLayout>

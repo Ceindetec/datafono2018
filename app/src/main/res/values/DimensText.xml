@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuracion dimensiones de los textos de la aplicacion -->
+
+    <dimen name="appTxtSizeXs">10dp</dimen>
+    <dimen name="appTxtSizeSm">15dp</dimen>
+    <dimen name="appTxtSizeMd">20dp</dimen>
+    <dimen name="appTxtSizeLg">25dp</dimen>
+    <dimen name="appTxtSizeXl">30dp</dimen>
+
+</resources>

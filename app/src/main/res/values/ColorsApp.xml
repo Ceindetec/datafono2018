@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Configuracion de colores de la aplicacion -->
+
+    <!-- Colores App -->
+    <color name="appColorPrimary">#4CAF50</color>
+    <color name="appColorPrimaryLight">#C8E6C9</color>
+    <color name="appColorPrimaryDark">#388E3C</color>
+    <color name="appColorAccent">#536DFE</color>
+    <color name="appColorAccentDark">#151B40</color>
+    <color name="appColorIntenseLight">#6A7DE5</color>
+    <color name="appColorContrast">#FF6FAD</color>
+    <color name="appColorClose">#FF6651</color>
+
+    <!--Colores primarios de la aplicacion-->
+    <color name="appColorBlack">#000000</color>
+    <color name="appColorGrayPrincipal">#404040</color>
+    <color name="appColorGraySecondary">#7F7F7F</color>
+    <color name="appColorGrayTerciary">#E5E5E5</color>
+    <color name="appColorWhite">#FFFFFF</color>
+    <color name="appColorTransparent">#00000000</color>
+
+    <!--Colores usados en los textos-->
+    <color name="appColorPrimaryText">@color/appColorBlack</color>
+    <color name="appColorSecondaryText">@color/appColorGraySecondary</color>
+
+</resources>

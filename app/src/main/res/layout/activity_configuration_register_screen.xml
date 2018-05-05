@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/frlPgbHldRegisterScreen"
+        style="@style/StyleProgressbarHolder"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:id="@+id/pgbRegisterScreen"
+            style="@style/StyleProgressbar" />
+    </FrameLayout>
+
+    <!--Header de los modulos-->
+    <include
+        android:id="@+id/headerContent"
+        layout="@layout/content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/appMarginBottom" />
+
+    <include
+        android:id="@+id/bodyContentConfiguration"
+        layout="@layout/content_configuracion_register_configuracion"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+    <include
+        android:id="@+id/bodyContentConfigurationInfoTerminal"
+        layout="@layout/content_configuracion_register_info_terminal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentConfigurationPassTecnico"
+        layout="@layout/content_configuracion_register_paso_pass_tecnico"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentConfigurationHost"
+        layout="@layout/content_configuracion_register_paso_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentConfigurationPort"
+        layout="@layout/content_configuracion_register_paso_port"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentConfigurationDispositivo"
+        layout="@layout/content_configuracion_register_paso_dispositivo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/bodyContentConfigurationExito"
+        layout="@layout/content_configuracion_register_paso_exitosa"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+
+</RelativeLayout>

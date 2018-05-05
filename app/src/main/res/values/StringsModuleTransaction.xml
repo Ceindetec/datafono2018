@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuración textos de la interfaz de la aplicacion -->
+
+    <!-- Textos de botones -->
+
+    <string name="transaction_text_button_credito">Consumo</string>
+
+    <string name="transaction_text_button_saldo">Saldo</string>
+
+    <string name="transaction_text_button_cambio_clave">Cambiar Clave a Tarjetas</string>
+
+    <string name="transaction_text_button_anulacion">Anulación</string>
+
+    <!-- Titulos de vistas -->
+
+    <string name="transaction_text_title_credito">Consumo</string>
+
+    <string name="transaction_text_title_cambio_clave">Cambio de Clave</string>
+
+    <string name="transaction_text_title_error">ERROR</string>
+
+    <string name="transaction_text_title_success">PERFECTO</string>
+
+    <string name="transaction_text_title_saldo">Consulta de Saldo</string>
+
+    <string name="transaction_text_title_anulacion">Anulación de transacción</string>
+
+    <!-- Subtitulos de vistas -->
+
+    <string name="transaction_text_subtitle_verificacion_datos">Datos de transacción:</string>
+
+    <!-- Textos adicionales -->
+
+    <string name="transaction_text_exitosa">TRANSACCIÓN EXITOSA</string>
+
+    <string name="transaction_text_erronea">TRANSACCIÓN ERRONEA</string>
+
+    <string name="transaction_text_nueva_pass_guardada">Nueva Contraseña registrada</string>
+
+    <string name="transaction_text_printer_error">No se pudo realizar la impresión del recibo</string>
+
+    <string name="transaction_text_erronea_detalle">Detalle del error:</string>
+
+    <string name="transaction_text_erronea_detalle_texto">…</string>
+
+    <string name="transaction_text_saldo">Saldo disponible</string>
+
+    <string name="transaction_text_tarjeta">Número Tarjeta</string>
+
+    <string name="transaction_text_cedula">Cedula</string>
+
+    <string name="transaction_text_valor_transaccion">Ingrese el valor del consumo:</string>
+
+    <string name="transaction_error_valor">Debes ingresar un valor de consumo</string>
+
+    <string name="transaction_error_valor_monto_minimo">El valor mínimo del consumo es de $1</string>
+
+    <string name="transaction_error_valor_monto_maximo">El valor máximo del consumo es de $3.000.000</string>
+
+    <string name="transaction_error_numero_Cargo_no_relacionado">El número de cargo no esta relacionado en el dispositivo.</string>
+
+    <string name="transaction_text_verifacion_valor_transaccion">Valor del consumo:</string>
+
+    <string name="transaction_text_numero_cargo">Ingrese el número de cargo:</string>
+
+    <string name="transaction_text_verifacion_numero_cargo">Número de cargo:</string>
+
+    <string name="transaction_text_numero_documento">Ingrese número de documento:</string>
+
+    <string name="transaction_text_seleccione_el_servicio">Seleccione el servico:</string>
+
+    <string name="transaction_error_numero_documento">Debe ingresar un número de documento</string>
+
+    <string name="transaction_text_verificacion_numero_documento">Número de documento:</string>
+
+    <string name="transaction_error_format_clave_usuario">La contraseña debe tener 4 caracteres</string>
+
+    <string name="transaction_error_format_clave_administrador">La contraseña de administración debe tener 4 caracteres</string>
+    <string name="transaction_error_clave_no_coincide">Las contraseñas NO coinciden</string>
+
+    <string name="transaction_error_format_numero_cargo">El número de cargo ingresado no es válido</string>
+
+    <!-- Respuestas de estado de la transaccion -->
+
+    <string name="transaction_info_status_error_general">Error general de Conexión</string>
+
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Header de los modulos-->
+    <include
+        android:id="@+id/headerContent"
+        layout="@layout/content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/appMarginBottom" />
+
+    <Button
+        android:id="@+id/btnConfigurationScreenModuleRegisterConfiguration"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/headerContent"
+        android:drawableStart="@drawable/if_gear"
+        android:text="@string/configuration_text_button_configuracion_dispositivo" />
+
+    <Button
+        android:id="@+id/btnConfigurationScreenModuleRegisterConfigurationPrinter"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/btnConfigurationScreenModuleRegisterConfiguration"
+        android:drawableStart="@drawable/if_print"
+        android:text="@string/configuration_text_button_configuracion_printer" />
+
+    <Button
+        android:id="@+id/btnConfigurationScreenModuleTestCommunication"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/btnConfigurationScreenModuleRegisterConfigurationPrinter"
+        android:drawableStart="@drawable/if_conn_plug"
+        android:text="@string/configuration_text_button_prueba" />
+
+    <Button
+        android:id="@+id/btnConfigurationScreenBack"
+        style="@style/StyleButtonBack"
+        android:layout_below="@id/btnConfigurationScreenModuleTestCommunication"
+        android:text="@string/general_text_button_regresar" />
+
+</RelativeLayout>

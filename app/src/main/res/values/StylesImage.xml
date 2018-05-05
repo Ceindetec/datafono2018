@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Estilos de las imagenes usadas en la aplicacion-->
+
+    <style name="StyleImageCompleto">
+        <item name="android:layout_width">@dimen/appImgSizeComWd</item>
+        <item name="android:layout_height">@dimen/appImgSizeComHg</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_margin">@dimen/appMargin</item>
+    </style>
+
+    <style name="StyleImageIso">
+        <item name="android:layout_width">@dimen/appImgSizeIsoLg</item>
+        <item name="android:layout_height">@dimen/appImgSizeIsoLg</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="StyleImageLogo">
+        <item name="android:layout_width">@dimen/appImgSizeLogoLg</item>
+        <item name="android:layout_height">@dimen/appImgSizeLogoSm</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+</resources>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosTitle"
+        style="@style/StyleTextPrimaryLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_anulacion" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosSubTitle"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_subtitle_verificacion_datos" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosValor"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosSubTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_verifacion_valor_transaccion" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosValorCantidad"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosValor"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_valor_cero" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosDocumento"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosValorCantidad"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_verificacion_numero_documento" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosNumeroDocumento"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosDocumento"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_texto_vacio" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosNumero"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosNumeroDocumento"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_verifacion_numero_cargo" />
+
+    <TextView
+        android:id="@+id/txvAnulacionTransactionVerificacionDatosNumeroCargo"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosNumero"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_texto_vacio" />
+
+    <Button
+        android:id="@+id/btnAnulacionTransactionVerificacionDatosBotonCancelar"
+        style="@style/StyleButtonCancel"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosNumeroCargo"
+        android:text="@string/general_text_button_cancelar" />
+
+    <Button
+        android:id="@+id/btnAnulacionTransactionVerificacionDatosBotonAceptar"
+        style="@style/StyleButtonAccept"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvAnulacionTransactionVerificacionDatosNumeroCargo"
+        android:text="@string/general_text_button_aceptar" />
+
+
+</RelativeLayout>

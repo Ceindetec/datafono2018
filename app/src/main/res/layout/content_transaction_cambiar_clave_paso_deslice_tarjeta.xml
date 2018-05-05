@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionDesliceTarjetaTitle"
+        style="@style/StyleTextPrimaryLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_cambio_clave" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionDesliceTarjetaSubTitle"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionDesliceTarjetaTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_subtitle_verificacion_datos" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionDesliceTarjetaNumero"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionDesliceTarjetaSubTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_verificacion_numero_documento" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionDesliceTarjetaNumeroDocumento"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/txvCambioClaveTransactionDesliceTarjetaNumero"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_texto_vacio" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionDesliceTarjetaMensaje"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionDesliceTarjetaNumeroDocumento"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_message_deslice_tarjeta" />
+
+    <ImageView
+        android:id="@+id/imvCambioClaveTransactionDesliceTarjetaStripeCard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionDesliceTarjetaMensaje"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/stripe_card" />
+
+
+</RelativeLayout>
+

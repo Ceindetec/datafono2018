@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionClaveNuevaUsuarioTitle"
+        style="@style/StyleTextPrimaryLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/transaction_text_title_cambio_clave" />
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionClaveNuevaUsuarioClave"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionClaveNuevaUsuarioTitle"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_clave_nueva_usuario" />
+
+    <EditText
+        android:id="@+id/edtCambioClaveTransactionClaveNuevaUsuarioContenidoClave"
+        style="@style/StylePassPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionClaveNuevaUsuarioClave"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:maxLength="4"/>
+
+    <TextView
+        android:id="@+id/txvCambioClaveTransactionClaveNuevaRepetirUsuarioClave"
+        style="@style/StyleTextPrimaryMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edtCambioClaveTransactionClaveNuevaUsuarioContenidoClave"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:text="@string/general_text_clave_repetir_usuario" />
+
+    <EditText
+        android:id="@+id/edtCambioClaveTransactionClaveNuevaRepetirUsuarioContenidoClave"
+        style="@style/StylePassPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvCambioClaveTransactionClaveNuevaRepetirUsuarioClave"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:maxLength="4"/>
+
+    <Button
+        android:id="@+id/btnCambioClaveTransactionClaveNuevaUsuarioBotonCancelar"
+        style="@style/StyleButtonCancel"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/edtCambioClaveTransactionClaveNuevaRepetirUsuarioContenidoClave"
+        android:text="@string/general_text_button_cancelar" />
+
+    <Button
+        android:id="@+id/btnCambioClaveTransactionClaveNuevaUsuarioBotonAceptar"
+        style="@style/StyleButtonAccept"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/edtCambioClaveTransactionClaveNuevaRepetirUsuarioContenidoClave"
+        android:text="@string/general_text_button_aceptar" />
+
+</RelativeLayout>

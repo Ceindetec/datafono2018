@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--Header de los modulos-->
+    <include
+        android:id="@+id/headerContent"
+        layout="@layout/content_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/appMarginBottom" />
+
+    <Button
+        android:drawableStart="@drawable/if_credit_card"
+        android:id="@+id/btnMainScreenModuleTransaction"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/headerContent"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:layout_marginEnd="@dimen/appMarginEnd"
+        android:layout_marginStart="@dimen/appMarginStart"
+        android:text="@string/main_text_button_transaction" />
+
+    <Button
+        android:drawableStart="@drawable/if_bar_chart"
+        android:id="@+id/btnMainScreenModuleReport"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/btnMainScreenModuleTransaction"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:layout_marginEnd="@dimen/appMarginEnd"
+        android:layout_marginStart="@dimen/appMarginStart"
+        android:text="@string/main_text_button_reports" />
+
+    <Button
+        android:drawableStart="@drawable/if_gears"
+        android:id="@+id/btnMainScreenModuleConfiguration"
+        style="@style/StyleButtonStandar"
+        android:layout_below="@id/btnMainScreenModuleReport"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:layout_marginEnd="@dimen/appMarginEnd"
+        android:layout_marginStart="@dimen/appMarginStart"
+        android:text="@string/main_text_button_configuration" />
+</RelativeLayout>

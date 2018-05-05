@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Configuracion margenes de la interfaz de la aplicacion -->
+
+    <dimen name="appMargin">5dp</dimen>
+    <dimen name="appMarginBottom">5dp</dimen>
+    <dimen name="appMarginStart">5dp</dimen>
+    <dimen name="appMarginEnd">5dp</dimen>
+    <dimen name="appMarginTop">5dp</dimen>
+
+</resources>

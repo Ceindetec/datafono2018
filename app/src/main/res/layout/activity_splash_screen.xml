@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/AppStyleActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgSplashScreenIso"
+        style="@style/StyleImageIso"
+        android:layout_above="@+id/txvSplashScreenTitle"
+        android:src="@mipmap/iso_cofrem" />
+
+    <TextView
+        android:id="@id/txvSplashScreenTitle"
+        style="@style/StyleTextSplashScreenTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/splash_title_bienvenida" />
+
+    <ProgressBar
+        android:id="@+id/pgbLoadingSplashScreen"
+        android:layout_width="@dimen/appImgSizeIsoMd"
+        android:layout_height="@dimen/appImgSizeIsoMd"
+        android:layout_above="@id/txvSplashScreenTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/appMarginBottom"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txvSplashScreenInfo"
+        style="@style/StyleTextSplashScreenInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txvSplashScreenTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/appMarginTop"
+        android:text="@string/splash_message_loading" />
+
+</RelativeLayout>
