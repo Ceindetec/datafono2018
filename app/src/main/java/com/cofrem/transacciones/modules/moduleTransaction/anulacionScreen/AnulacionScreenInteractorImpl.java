@@ -3,6 +3,7 @@ package com.cofrem.transacciones.modules.moduleTransaction.anulacionScreen;
 import android.content.Context;
 
 import com.cofrem.transacciones.models.Transaccion;
+import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionTransaccion;
 
 class AnulacionScreenInteractorImpl implements AnulacionScreenInteractor {
     /**
@@ -62,6 +63,12 @@ class AnulacionScreenInteractorImpl implements AnulacionScreenInteractor {
     public void registrarTransaccion(Context context, Transaccion transaccion) {
         //Registra la transaccion de anulacion
         anulacionScreenRepository.registrarTransaccion(context, transaccion);
+    }
+
+    @Override
+    public void anularSuccess(Context context, InformacionTransaccion informacionTransaccion) {
+        //Registra la transaccion de anulacion
+        anulacionScreenRepository.anularSuccess(context, informacionTransaccion);
     }
 
     @Override

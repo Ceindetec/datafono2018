@@ -16,5 +16,8 @@ public class ApiWS {
     public final static int CODIGO_ERROR_EJECUCION = 7;
     public final static int CODIGO_TERMINAL_INACTIVA = 8;
     public final static int CODIGO_TRANSACCION_INSUFICIENTE = 9;
+    public final static int CODIGO_NUMERO_TRANSACCION_INVALIDO = 10;
+    public final static int CODIGO_NUMERO_TRANSACCION_NO_CORRESPONDE = 11;
+    public final static int CODIGO_FECHA_INVALIDA = 12;
 
 }

@@ -16,6 +16,7 @@ public class InfoGlobalTransaccionREST {
     public final static String METHODO_ASIGNAID = "asignaID";
     public final static String METHODO_GET_SERVICIOS = "getservicios";
     public final static String METHODO_CONSUMO = "consumo";
+    public final static String METHODO_ANULACION = "anulacion";
 
 
     public final static String KEY_JSON_RESULTADO = "resultado";

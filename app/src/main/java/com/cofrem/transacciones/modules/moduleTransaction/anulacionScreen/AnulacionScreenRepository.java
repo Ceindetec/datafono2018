@@ -3,6 +3,7 @@ package com.cofrem.transacciones.modules.moduleTransaction.anulacionScreen;
 import android.content.Context;
 
 import com.cofrem.transacciones.models.Transaccion;
+import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionTransaccion;
 
 public interface AnulacionScreenRepository {
 
@@ -23,6 +24,13 @@ public interface AnulacionScreenRepository {
      * @param transaccion
      */
     void registrarTransaccion(Context context, Transaccion transaccion);
+
+    /**
+     *
+     * @param context
+     * @param informacionTransaccion
+     */
+    void anularSuccess(Context context, InformacionTransaccion informacionTransaccion);
 
     /**
      * Metodo para imprimir la copia para el cliente

@@ -2,6 +2,7 @@ package com.cofrem.transacciones.modules.moduleTransaction.anulacionScreen;
 
 import android.content.Context;
 
+import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionTransaccion;
 import com.cofrem.transacciones.modules.moduleTransaction.anulacionScreen.events.AnulacionScreenEvent;
 import com.cofrem.transacciones.modules.moduleTransaction.anulacionScreen.ui.AnulacionScreenView;
 import com.cofrem.transacciones.lib.EventBus;
@@ -18,6 +19,7 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
      */
     //Declaracion del bus de eventos
     EventBus eventBus;
+    Context context;
 
     /**
      * #############################################################################################
@@ -68,6 +70,7 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
     @Override
     public void registrarTransaccion(Context context, Transaccion transaccion) {
         anulacionScreenInteractor.registrarTransaccion(context, transaccion);
+        this.context = context;
     }
 
     @Override
@@ -139,8 +142,12 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
                 onTransaccionDBRegisterError();
                 break;
 
-            case AnulacionScreenEvent.onImprecionReciboSuccess:
+            case AnulacionScreenEvent.onTransaccionAnulacionSuccess:
+                onAnularSuccess(anulacionScreenEvent.getInformacionTransaccion());
+                break;
 
+            case AnulacionScreenEvent.onTransaccionAnulacionError:
+                onTransaccionError(anulacionScreenEvent.getErrorMessage());
                 break;
             case AnulacionScreenEvent.onImprecionReciboError:
 
@@ -210,6 +217,12 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
         }
     }
 
+    private void onTransaccionError(String errorMessage) {
+        if (anulacionScreenView != null) {
+            anulacionScreenView.handleTransaccionError(errorMessage);
+        }
+    }
+
     /**
      * Metodo para manejar la conexion del Web Service Erronea
      */
@@ -236,6 +249,12 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
     private void onTransaccionDBRegisterError() {
         if (anulacionScreenView != null) {
             anulacionScreenView.handleTransaccionDBRegisterError();
+        }
+    }
+
+    private void onAnularSuccess(InformacionTransaccion informacionTransaccion) {
+        if (anulacionScreenView != null) {
+            anulacionScreenInteractor.anularSuccess(context,informacionTransaccion);
         }
     }
 }

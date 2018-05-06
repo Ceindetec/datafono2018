@@ -487,8 +487,21 @@ public class AnulacionScreenActivity extends Activity implements AnulacionScreen
         bodyContentAnulacionTransaccionErronea.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void handleTransaccionError(String errorMessage) {
 
-    /*
+        //Oculta la barra de progreso
+        hideProgress();
+
+        inicializarOcultamientoVistas();
+
+        txvAnulacionTransactionErrorDetalleTexto.setText(errorMessage);
+
+        bodyContentAnulacionTransaccionErronea.setVisibility(View.VISIBLE);
+
+    }
+
+/*
       #############################################################################################
       Metodo propios de la clase
       #############################################################################################

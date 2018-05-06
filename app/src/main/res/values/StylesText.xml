@@ -38,6 +38,13 @@
         <item name="android:background">@color/appColorTransparent</item>
     </style>
 
+    <style name="StyleTextPrimaryMediumError">
+        <item name="android:textColor">@color/appColorClose</item>
+        <item name="android:textSize">@dimen/appTxtSizeMd</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:background">@color/appColorTransparent</item>
+    </style>
+
     <style name="StyleTextPrimaryLargeSuccess">
         <item name="android:textColor">@color/appColorPrimaryDark</item>
         <item name="android:textSize">@dimen/appTxtSizeLg</item>

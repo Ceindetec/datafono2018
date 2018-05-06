@@ -32,6 +32,12 @@ public interface AnulacionScreenView {
      */
     void handleTransaccionSuccess();
 
+
+    /**
+     * Metodo para manejar la transaccion con error
+     */
+    void handleTransaccionError(String errorMessage);
+
     /**
      * Metodo para manejar la el valor no valido en la transaccion
      */

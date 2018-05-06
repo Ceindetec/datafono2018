@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/txvCreditoTransactionErrorMensaje"
-        style="@style/StyleTextPrimaryLargeError"
+        style="@style/StyleTextPrimaryMediumError"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

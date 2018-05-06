@@ -197,9 +197,7 @@ public class CreditoScreenPresenterImpl implements CreditoScreenPresenter {
 
     private void onCosumirServiciosSuccess(InformacionTransaccion informacionTransaccion) {
         if (creditoScreenView != null) {
-//            creditoScreenView.handleCosumirServiciosSuccess();
             creditoScreenInteractor.cosumirSuccess(context, informacionTransaccion);
-
         }
     }
 
