@@ -98,7 +98,7 @@ public class CreditoScreenRepositoryImpl implements CreditoScreenRepository {
                                 Servicio servicio = new Servicio();
 
                                 servicio.setCodigo(js3.get("codigo_servicio").getAsString());
-                                servicio.setDescripcion(toTextCase(js3.get("servicio").getAsString().toLowerCase()));
+                                servicio.setDescripcion(toTextCase(js3.get("descripcion").getAsString().toLowerCase()));
 
                                 listServicios.add(servicio);
                             }
