@@ -1,6 +1,9 @@
 package com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.events;
 
+import com.cofrem.transacciones.models.Servicio;
 import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionSaldo;
+
+import java.util.ArrayList;
 
 public class SaldoScreenEvent {
 
@@ -17,6 +20,8 @@ public class SaldoScreenEvent {
     private String errorMessage;
 
     private InformacionSaldo informacionSaldo;
+
+    private ArrayList<Servicio> listServicios;
 
     //Getters y Setters de la clase
 
@@ -42,5 +47,13 @@ public class SaldoScreenEvent {
 
     public void setInformacionSaldo(InformacionSaldo informacionSaldo) {
         this.informacionSaldo = informacionSaldo;
+    }
+
+    public ArrayList<Servicio> getListServicios() {
+        return listServicios;
+    }
+
+    public void setListServicios(ArrayList<Servicio> listServicios) {
+        this.listServicios = listServicios;
     }
 }

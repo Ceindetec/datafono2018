@@ -99,10 +99,11 @@ public class CreditoScreenRepositoryImpl implements CreditoScreenRepository {
 
                                 servicio.setCodigo(js3.get("codigo_servicio").getAsString());
                                 servicio.setDescripcion(toTextCase(js3.get("descripcion").getAsString().toLowerCase()));
+                                servicio.setValor("$ "+js3.get("saldo").getAsString());
 
                                 listServicios.add(servicio);
                             }
-                            listServicios.add(new Servicio("B","Bono Empresarial",null));
+//                            listServicios.add(new Servicio("B","Bono Empresarial",null));
                             postEvent(CreditoScreenEvent.onConsultarServiciosSuccess,listServicios);
                         }else{
 

@@ -1,4 +1,4 @@
-package com.cofrem.transacciones.modules.moduleTransaction.creditoScreen.ui;
+package com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -67,9 +67,6 @@ public class AdapterServicio extends BaseAdapter {
 
         TextView texto = (TextView) v.findViewById(R.id.item_servicio_texto);
         texto.setText(servicio.getDescripcion());
-
-        TextView valor = (TextView) v.findViewById(R.id.item_servicio_valor);
-        valor.setText(servicio.getValor());
 
         ImageView imagen = (ImageView) v.findViewById(R.id.item_servicio_icino);
         imagen.setImageDrawable(servicio.getImagen());

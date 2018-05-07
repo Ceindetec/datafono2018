@@ -5,13 +5,17 @@ import android.content.Context;
 import com.cofrem.transacciones.R;
 import com.cofrem.transacciones.database.AppDatabase;
 import com.cofrem.transacciones.global.InfoGlobalSettingsPrint;
+import com.cofrem.transacciones.global.InfoGlobalTransaccionREST;
 import com.cofrem.transacciones.global.InfoGlobalTransaccionSOAP;
 import com.cofrem.transacciones.lib.KsoapAsync;
 import com.cofrem.transacciones.lib.PrinterHandler;
 import com.cofrem.transacciones.lib.StyleConfig;
+import com.cofrem.transacciones.lib.VolleyTransaction;
 import com.cofrem.transacciones.models.ConfigurationPrinter;
 import com.cofrem.transacciones.models.PrintRow;
+import com.cofrem.transacciones.models.Servicio;
 import com.cofrem.transacciones.models.Transaccion;
+import com.cofrem.transacciones.models.modelsWS.ApiWS;
 import com.cofrem.transacciones.models.modelsWS.MessageWS;
 import com.cofrem.transacciones.models.modelsWS.TransactionWS;
 import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionSaldo;
@@ -20,10 +24,13 @@ import com.cofrem.transacciones.models.modelsWS.modelTransaccion.ResultadoTransa
 import com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.events.SaldoScreenEvent;
 import com.cofrem.transacciones.lib.EventBus;
 import com.cofrem.transacciones.lib.GreenRobotEventBus;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
 import org.ksoap2.serialization.SoapObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
 public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
@@ -58,30 +65,100 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
     @Override
     public void registrarTransaccion(Context context, Transaccion transaccion) {
 
-        ResultadoTransaccion resultadoTransaccion = registrarTransaccionConsumoWS(context, transaccion);
 
-        //Registra mediante el WS la transaccion
-        if (resultadoTransaccion != null) {
 
-            MessageWS messageWS = resultadoTransaccion.getMessageWS();
+        final HashMap<String, String> parameters = new HashMap<>();
 
-            if (messageWS.getCodigoMensaje() == MessageWS.statusTransaccionExitosa) {
+        final String codigo = AppDatabase.getInstance(context).obtenerCodigoTerminal();
 
-                postEvent(SaldoScreenEvent.onTransaccionSuccess, resultadoTransaccion.getInformacionSaldo());
+        parameters.put("codigo", codigo);
+        parameters.put("numero_tarjeta", transaccion.getNumero_tarjeta());
+        parameters.put("password", transaccion.getClave()+"");
 
-                resultadoTransaccionRecibo = resultadoTransaccion;
 
-                //Imprime el recibo
-                //imprimirRecibo(context);
+        VolleyTransaction volleyTransaction = new VolleyTransaction();
 
-            } else {
-                //Error en el registro de la transaccion del web service
-                postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, messageWS.getDetalleMensaje());
-            }
-        } else {
-            //Error en la conexion con el Web Service
-            postEvent(SaldoScreenEvent.onTransaccionWSConexionError);
-        }
+
+        volleyTransaction.getData(context,
+                parameters,
+                InfoGlobalTransaccionREST.HTTP +
+                        AppDatabase.getInstance(context).obtenerURLConfiguracionConexion() +
+                        InfoGlobalTransaccionREST.WEB_SERVICE_URI +
+                        InfoGlobalTransaccionREST.METHODO_SALDO
+                ,
+                new VolleyTransaction.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JsonObject data) {
+
+                        if(data.get("estado").getAsBoolean()){
+
+                            ArrayList<Servicio> listServicios = new ArrayList<Servicio>();
+
+                            JsonArray servicios = data.get("Saldos").getAsJsonArray();
+                            int sizeArray = servicios.size();
+                            for(int i = 0; i<sizeArray;i++){
+                                JsonObject js3 = (JsonObject) servicios.get(i);
+                                Servicio servicio = new Servicio();
+
+                                servicio.setCodigo(js3.get("codigo_servicio").getAsString());
+                                servicio.setDescripcion(toTextCase(js3.get("servicio").getAsString().toLowerCase()));
+                                servicio.setValor("$"+js3.get("saldo").getAsString());
+
+                                listServicios.add(servicio);
+                            }
+//                            listServicios.add(new Servicio("B","Bono Empresarial",null));
+                            postEvent(SaldoScreenEvent.onTransaccionSuccess,listServicios);
+                        }else{
+
+                            postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, data.get("mensaje").getAsString());
+
+                        }
+                    }
+
+                    @Override
+                    public void onError(String errorMessage) {
+                        postEvent(SaldoScreenEvent.onTransaccionWSConexionError);
+                    }
+
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        ResultadoTransaccion resultadoTransaccion = registrarTransaccionConsumoWS(context, transaccion);
+//
+//        //Registra mediante el WS la transaccion
+//        if (resultadoTransaccion != null) {
+//
+//            MessageWS messageWS = resultadoTransaccion.getMessageWS();
+//
+//            if (messageWS.getCodigoMensaje() == MessageWS.statusTransaccionExitosa) {
+//
+//                postEvent(SaldoScreenEvent.onTransaccionSuccess, resultadoTransaccion.getInformacionSaldo());
+//
+//                resultadoTransaccionRecibo = resultadoTransaccion;
+//
+//                //Imprime el recibo
+//                //imprimirRecibo(context);
+//
+//            } else {
+//                //Error en el registro de la transaccion del web service
+//                postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, messageWS.getDetalleMensaje());
+//            }
+//        } else {
+//            //Error en la conexion con el Web Service
+//            postEvent(SaldoScreenEvent.onTransaccionWSConexionError);
+//        }
 
     }
 
@@ -90,6 +167,23 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      * Metodo propios de la clase
      * #############################################################################################
      */
+
+    /**
+     * Metodo encargado de Pasar de minusculas a mayuscula la primera letra de cada palabra
+     * @param givenString
+     * @return
+     */
+    public static String toTextCase(String givenString) {
+        String[] arr = givenString.split(" ");
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                    .append(arr[i].substring(1)).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
 
     /**
      * Metodo que:
@@ -245,7 +339,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      * @param type
      * @param errorMessage
      */
-    private void postEvent(int type, String errorMessage, InformacionSaldo informacionSaldo) {
+    private void postEvent(int type, String errorMessage, InformacionSaldo informacionSaldo,ArrayList<Servicio> listServicios) {
         SaldoScreenEvent saldoScreenEvent = new SaldoScreenEvent();
         saldoScreenEvent.setEventType(type);
         if (errorMessage != null) {
@@ -254,6 +348,10 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
 
         if (informacionSaldo != null) {
             saldoScreenEvent.setInformacionSaldo(informacionSaldo);
+        }
+
+        if (listServicios != null) {
+            saldoScreenEvent.setListServicios(listServicios);
         }
 
         EventBus eventBus = GreenRobotEventBus.getInstance();
@@ -268,7 +366,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      */
     private void postEvent(int type) {
 
-        postEvent(type, null, null);
+        postEvent(type, null, null, null);
 
     }
 
@@ -279,7 +377,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      */
     private void postEvent(int type, String errorMessage) {
 
-        postEvent(type, errorMessage, null);
+        postEvent(type, errorMessage, null, null);
 
     }
 
@@ -290,7 +388,18 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      */
     private void postEvent(int type, InformacionSaldo informacionSaldo) {
 
-        postEvent(type, null, informacionSaldo);
+        postEvent(type, null, informacionSaldo, null);
+
+    }
+
+    /**
+     * Sobrecarga del metodo postevent
+     *
+     * @param type
+     */
+    private void postEvent(int type, ArrayList<Servicio> listServicios) {
+
+        postEvent(type, null,null, listServicios);
 
     }
 }

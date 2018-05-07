@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -342,7 +343,24 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
             ArrayList<Servicio> listaAdapter = new ArrayList<>();
 
             for (Servicio servicio : lista) {
-                listaAdapter.add(new Servicio(servicio.getCodigo(), servicio.getDescripcion(), ContextCompat.getDrawable(this, R.drawable.if_back_d)));
+                Drawable imagen;
+
+                switch (servicio.getCodigo()) {
+                    case "R":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_card_giftcard_black);
+                        break;
+                    case "A":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_sync_black);
+                        break;
+                    case "B":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_work_black);
+                        break;
+                    default:
+                        imagen = ContextCompat.getDrawable(this, R.drawable.if_stop);
+                }
+
+
+                listaAdapter.add(new Servicio(servicio.getCodigo(), servicio.getDescripcion(), servicio.getValor(), imagen));
             }
 
             AdapterServicio adapter = new AdapterServicio(this, listaAdapter);
@@ -870,7 +888,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
 
     @ItemClick(R.id.lvCreditoTransactionServicios)
-    void serviciosListItemCliced(Servicio servicio){
+    void serviciosListItemCliced(Servicio servicio) {
 
         //Actualiza el paso actual
         pasoTransaccion = PASO_CLAVE_USUARIO;
@@ -884,9 +902,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
         bodyContentCreditoPassUsuario.setVisibility(View.VISIBLE);
 
 
-
     }
-
 
 
     /**
@@ -943,7 +959,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
     public void imprimirRecibo() {
 
         //Imprime el recibo
-        creditoScreenPresenter.imprimirRecibo(this,this.getResources().getString(
+        creditoScreenPresenter.imprimirRecibo(this, this.getResources().getString(
                 R.string.recibo_copia_cliente));
 
     }

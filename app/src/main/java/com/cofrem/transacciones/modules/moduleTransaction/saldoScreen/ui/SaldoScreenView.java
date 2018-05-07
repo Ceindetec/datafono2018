@@ -1,13 +1,16 @@
 package com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.ui;
 
+import com.cofrem.transacciones.models.Servicio;
 import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionSaldo;
+
+import java.util.ArrayList;
 
 public interface SaldoScreenView {
 
     /**
      * Metodo para manejar la verificacion exitosa
      */
-    void handleTransaccionSuccess(InformacionSaldo informacionSaldo);
+    void handleTransaccionSuccess(ArrayList<Servicio> listServicios);
 
     /**
      * Metodo para manejar la verificacion exitosa

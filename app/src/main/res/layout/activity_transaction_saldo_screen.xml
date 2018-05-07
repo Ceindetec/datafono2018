@@ -60,11 +60,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerContent"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <include
         android:id="@+id/bodyContentSaldoTransaccionErronea"
         layout="@layout/content_transaction_saldo_paso_transaccion_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerContent"
+        android:visibility="gone" />
+    <include
+
+        android:id="@+id/bodyContentSaldoPasoServicio"
+        layout="@layout/content_transaction_saldo_paso_servicios"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerContent"

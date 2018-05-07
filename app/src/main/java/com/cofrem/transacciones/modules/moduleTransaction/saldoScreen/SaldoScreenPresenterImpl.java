@@ -2,12 +2,15 @@ package com.cofrem.transacciones.modules.moduleTransaction.saldoScreen;
 
 import android.content.Context;
 
+import com.cofrem.transacciones.models.Servicio;
 import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionSaldo;
 import com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.events.SaldoScreenEvent;
 import com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.ui.SaldoScreenView;
 import com.cofrem.transacciones.lib.EventBus;
 import com.cofrem.transacciones.lib.GreenRobotEventBus;
 import com.cofrem.transacciones.models.Transaccion;
+
+import java.util.ArrayList;
 
 public class SaldoScreenPresenterImpl implements SaldoScreenPresenter {
 
@@ -88,7 +91,7 @@ public class SaldoScreenPresenterImpl implements SaldoScreenPresenter {
         switch (saldoScreenEvent.getEventType()) {
 
             case SaldoScreenEvent.onTransaccionSuccess:
-                onTransaccionSuccess(saldoScreenEvent.getInformacionSaldo());
+                onTransaccionSuccess(saldoScreenEvent.getListServicios());
                 break;
 
             case SaldoScreenEvent.onTransaccionWSRegisterError:
@@ -120,9 +123,9 @@ public class SaldoScreenPresenterImpl implements SaldoScreenPresenter {
     /**
      * Metodo para manejar la verificacion exitosa
      */
-    private void onTransaccionSuccess(InformacionSaldo informacionSaldo) {
+    private void onTransaccionSuccess(ArrayList<Servicio> listServicios) {
         if (saldoScreenView != null) {
-            saldoScreenView.handleTransaccionSuccess(informacionSaldo);
+            saldoScreenView.handleTransaccionSuccess(listServicios);
         }
     }
 

@@ -5,13 +5,16 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +23,9 @@ import com.cofrem.transacciones.global.InfoGlobalSettingsBlockButtons;
 import com.cofrem.transacciones.lib.MagneticHandler;
 import com.cofrem.transacciones.models.InfoHeaderApp;
 import com.cofrem.transacciones.models.PrintRow;
+import com.cofrem.transacciones.models.Servicio;
 import com.cofrem.transacciones.models.modelsWS.modelTransaccion.InformacionSaldo;
+import com.cofrem.transacciones.modules.moduleTransaction.creditoScreen.ui.AdapterServicio;
 import com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.SaldoScreenPresenter;
 import com.cofrem.transacciones.modules.moduleTransaction.saldoScreen.SaldoScreenPresenterImpl;
 import com.cofrem.transacciones.R;
@@ -35,6 +40,8 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.LongClick;
 import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.ArrayList;
 
 import static android.view.KeyEvent.KEYCODE_ENTER;
 
@@ -75,7 +82,14 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
     @ViewById
     RelativeLayout bodyContentSaldoTransaccionErronea;
     @ViewById
+    RelativeLayout bodyContentSaldoPasoServicio;
+    @ViewById
     FrameLayout frlPgbHldTransactionSaldo;
+
+    @ViewById
+    ListView lvSaldoTransactionServicios;
+
+
 
     //Paso transaction_saldo_paso_numero_documento
     @ViewById
@@ -297,24 +311,68 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
      * Metodo para manejar la verificacion exitosa
      */
     @Override
-    public void handleTransaccionSuccess(InformacionSaldo informacionSaldo) {
+    public void handleTransaccionSuccess(ArrayList<Servicio> lista) {
 
-        //Ocula la barra de progreso
         hideProgress();
 
-        //Oculta la vista de deslizar tarjeta
-        bodyContentSaldoPassUsuario.setVisibility(View.GONE);
+        if (lista.size() > 0) {
 
-        //Muestra la vista de contraseña de usuario
-        bodyContentSaldoTransaccionExitosa.setVisibility(View.VISIBLE);
+            ArrayList<Servicio> listaAdapter = new ArrayList<>();
 
-        txvSaldoTransactionExitosaTarjetaValor.setText(informacionSaldo.getNumeroTarjeta());
+            for (Servicio servicio : lista) {
+                Drawable imagen;
 
-        txvSaldoTransactionExitosaCedulaValor.setText(informacionSaldo.getCedulaUsuario());
+                switch (servicio.getCodigo()) {
+                    case "R":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_card_giftcard_black);
+                        break;
+                    case "A":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_sync_black);
+                        break;
+                    case "B":
+                        imagen = ContextCompat.getDrawable(this, R.drawable.ic_work_black);
+                        break;
+                    default:
+                        imagen = ContextCompat.getDrawable(this, R.drawable.if_stop);
+                }
 
-        int saldo = Integer.parseInt(informacionSaldo.getValorTotalSaldo().split(".0")[0]);
 
-        txvSaldoTransactionExitosaSaldoCantidad.setText(PrintRow.numberFormat(saldo));
+                listaAdapter.add(new Servicio(servicio.getCodigo(), servicio.getDescripcion(), servicio.getValor(), imagen));
+            }
+
+            com.cofrem.transacciones.modules.moduleTransaction.creditoScreen.ui.AdapterServicio adapter = new AdapterServicio(this, listaAdapter);
+
+            lvSaldoTransactionServicios.setAdapter(adapter);
+
+            //Oculta la vista de deslizar tarjeta
+            bodyContentSaldoPassUsuario.setVisibility(View.GONE);
+
+            //Muestra la vista de contraseña de usuario
+            bodyContentSaldoPasoServicio.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+
+
+
+//        //Ocula la barra de progreso
+//        hideProgress();
+//
+//        //Oculta la vista de deslizar tarjeta
+//        bodyContentSaldoPassUsuario.setVisibility(View.GONE);
+//
+//        //Muestra la vista de contraseña de usuario
+//        bodyContentSaldoTransaccionExitosa.setVisibility(View.VISIBLE);
+//
+//        txvSaldoTransactionExitosaTarjetaValor.setText(informacionSaldo.getNumeroTarjeta());
+//
+//        txvSaldoTransactionExitosaCedulaValor.setText(informacionSaldo.getCedulaUsuario());
+//
+//        int saldo = Integer.parseInt(informacionSaldo.getValorTotalSaldo().split(".0")[0]);
+//
+//        txvSaldoTransactionExitosaSaldoCantidad.setText(PrintRow.numberFormat(saldo));
 
     }
 
@@ -407,6 +465,7 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
         bodyContentSaldoPassUsuario.setVisibility(View.GONE);
         bodyContentSaldoTransaccionExitosa.setVisibility(View.GONE);
         bodyContentSaldoTransaccionErronea.setVisibility(View.GONE);
+        bodyContentSaldoPasoServicio.setVisibility(View.GONE);
     }
 
     /**
@@ -467,7 +526,8 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
     @Click({R.id.btnSaldoTransactionNumeroDocumentoBotonCancelar,
             R.id.btnSaldoTransactionLecturaIncorrectaBotonSalir,
             R.id.btnSaldoTransactionClaveUsuarioBotonCancelar,
-            R.id.btnSaldoTransactionErrorBotonSalir
+            R.id.btnSaldoTransactionErrorBotonSalir,
+            R.id.btnSaldoTransactionServiciosBotonCancelar
     })
     public void navigateToTransactionScreen() {
         new Handler().postDelayed(new Runnable() {
