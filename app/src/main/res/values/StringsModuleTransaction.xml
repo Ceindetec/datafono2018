@@ -47,6 +47,8 @@
 
     <string name="transaction_text_saldo">Saldo disponible</string>
 
+    <string name="transaction_text_saldo_insuficiente">Saldo disponible Insuficiente</string>
+
     <string name="transaction_text_tarjeta">Número Tarjeta</string>
 
     <string name="transaction_text_cedula">Cedula</string>

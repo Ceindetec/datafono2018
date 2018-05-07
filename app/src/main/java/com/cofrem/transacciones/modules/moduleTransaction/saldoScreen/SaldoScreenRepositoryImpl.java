@@ -66,14 +66,13 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
     public void registrarTransaccion(Context context, Transaccion transaccion) {
 
 
-
         final HashMap<String, String> parameters = new HashMap<>();
 
         final String codigo = AppDatabase.getInstance(context).obtenerCodigoTerminal();
 
         parameters.put("codigo", codigo);
         parameters.put("numero_tarjeta", transaccion.getNumero_tarjeta());
-        parameters.put("password", transaccion.getClave()+"");
+        parameters.put("password", transaccion.getClave() + "");
 
 
         VolleyTransaction volleyTransaction = new VolleyTransaction();
@@ -90,25 +89,25 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
                     @Override
                     public void onSuccess(JsonObject data) {
 
-                        if(data.get("estado").getAsBoolean()){
+                        if (data.get("estado").getAsBoolean()) {
 
                             ArrayList<Servicio> listServicios = new ArrayList<Servicio>();
 
                             JsonArray servicios = data.get("Saldos").getAsJsonArray();
                             int sizeArray = servicios.size();
-                            for(int i = 0; i<sizeArray;i++){
+                            for (int i = 0; i < sizeArray; i++) {
                                 JsonObject js3 = (JsonObject) servicios.get(i);
                                 Servicio servicio = new Servicio();
 
                                 servicio.setCodigo(js3.get("codigo_servicio").getAsString());
                                 servicio.setDescripcion(toTextCase(js3.get("servicio").getAsString().toLowerCase()));
-                                servicio.setValor("$"+js3.get("saldo").getAsString());
+                                servicio.setValor("$" + js3.get("saldo").getAsString());
 
                                 listServicios.add(servicio);
                             }
 //                            listServicios.add(new Servicio("B","Bono Empresarial",null));
-                            postEvent(SaldoScreenEvent.onTransaccionSuccess,listServicios);
-                        }else{
+                            postEvent(SaldoScreenEvent.onTransaccionSuccess, listServicios);
+                        } else {
 
                             postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, data.get("mensaje").getAsString());
 
@@ -123,43 +122,6 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
                 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-//        ResultadoTransaccion resultadoTransaccion = registrarTransaccionConsumoWS(context, transaccion);
-//
-//        //Registra mediante el WS la transaccion
-//        if (resultadoTransaccion != null) {
-//
-//            MessageWS messageWS = resultadoTransaccion.getMessageWS();
-//
-//            if (messageWS.getCodigoMensaje() == MessageWS.statusTransaccionExitosa) {
-//
-//                postEvent(SaldoScreenEvent.onTransaccionSuccess, resultadoTransaccion.getInformacionSaldo());
-//
-//                resultadoTransaccionRecibo = resultadoTransaccion;
-//
-//                //Imprime el recibo
-//                //imprimirRecibo(context);
-//
-//            } else {
-//                //Error en el registro de la transaccion del web service
-//                postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, messageWS.getDetalleMensaje());
-//            }
-//        } else {
-//            //Error en la conexion con el Web Service
-//            postEvent(SaldoScreenEvent.onTransaccionWSConexionError);
-//        }
-
     }
 
     /**
@@ -170,6 +132,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
 
     /**
      * Metodo encargado de Pasar de minusculas a mayuscula la primera letra de cada palabra
+     *
      * @param givenString
      * @return
      */
@@ -184,99 +147,6 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
         return sb.toString().trim();
     }
 
-
-    /**
-     * Metodo que:
-     * - registra mediante el WS la transaccion
-     * - Extrae el estado de la transaccion
-     *
-     * @param context     contexto desde la cual se realiza la transaccion
-     * @param transaccion datos de la transaccion
-     * @return regreso del resultado de la transaccion
-     */
-    private ResultadoTransaccion registrarTransaccionConsumoWS(Context context, Transaccion transaccion) {
-
-        //Se crea una variable de estado de la transaccion
-        ResultadoTransaccion resultadoTransaccion = null;
-
-        //Inicializacion y declaracion de parametros para la peticion web service
-        String[][] params = {
-                {InfoGlobalTransaccionSOAP.PARAM_NAME_SALDO_CODIGO_TERMINAL, AppDatabase.getInstance(context).obtenerCodigoTerminal()},
-                {InfoGlobalTransaccionSOAP.PARAM_NAME_SALDO_CEDULA_USUARIO, transaccion.getNumero_documento()},
-                {InfoGlobalTransaccionSOAP.PARAM_NAME_SALDO_NUMERO_TARJETA, transaccion.getNumero_tarjeta()},
-                {InfoGlobalTransaccionSOAP.PARAM_NAME_SALDO_CLAVE_USUARIO, String.valueOf(transaccion.getClave())},
-                {InfoGlobalTransaccionSOAP.PARAM_NAME_SALDO_TIPO_ENCRIPTACION, String.valueOf(transaccion.getTipo_encriptacion())}
-        };
-
-        //Creacion del modelo TransactionWS para ser usado dentro del webservice
-        TransactionWS transactionWS = new TransactionWS(
-                InfoGlobalTransaccionSOAP.HTTP + AppDatabase.getInstance(context).obtenerURLConfiguracionConexion() + InfoGlobalTransaccionSOAP.WEB_SERVICE_URI,
-                InfoGlobalTransaccionSOAP.HTTP + InfoGlobalTransaccionSOAP.NAME_SPACE,
-                InfoGlobalTransaccionSOAP.METHOD_NAME_SALDO,
-                params);
-
-        //Inicializacion del objeto que sera devuelto por la transaccion del webservice
-        SoapObject soapTransaction = null;
-
-        try {
-
-            //Transaccion solicitada al web service
-            soapTransaction = new KsoapAsync(new KsoapAsync.ResponseKsoapAsync() {
-
-                /**
-                 * Metodo sobrecargado que maneja el callback de los datos
-                 *
-                 * @param soapResponse
-                 * @return
-                 */
-                @Override
-                public SoapObject processFinish(SoapObject soapResponse) {
-                    return soapResponse;
-                }
-
-            }).execute(transactionWS).get();
-
-        } catch (InterruptedException | ExecutionException e) {
-
-            e.printStackTrace();
-
-        }
-
-        //Si la transaccion no genero resultado regresa un establecimiento vacio
-        if (soapTransaction != null) {
-
-            //Inicializacion del modelo MessageWS
-            MessageWS messageWS = new MessageWS(
-                    (SoapObject) soapTransaction.getProperty(MessageWS.PROPERTY_MESSAGE)
-            );
-
-            switch (messageWS.getCodigoMensaje()) {
-
-                //Transaccion exitosa
-                case MessageWS.statusTransaccionExitosa:
-
-                    InformacionSaldo informacionSaldo = new InformacionSaldo(
-                            (SoapObject) soapTransaction.getProperty(InformacionSaldo.PROPERTY_SALDO_RESULT)
-                    );
-
-                    resultadoTransaccion = new ResultadoTransaccion(
-                            informacionSaldo,
-                            messageWS
-                    );
-                    break;
-
-                default:
-                    resultadoTransaccion = new ResultadoTransaccion(
-                            messageWS
-                    );
-                    break;
-            }
-
-        }
-
-        //Retorno de estado de transaccion
-        return resultadoTransaccion;
-    }
 
     /**
      * Metodo que imprime el recibo de la transaccion
@@ -298,7 +168,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
         PrintRow.printCofrem(context, printRows, gray, 10);
 
         printRows.add(new PrintRow(context.getResources().getString(
-                R.string.recibo_title_consulta_saldo), new StyleConfig(StyleConfig.Align.CENTER, gray,20)));
+                R.string.recibo_title_consulta_saldo), new StyleConfig(StyleConfig.Align.CENTER, gray, 20)));
 
 
         printRows.add(new PrintRow(context.getResources().getString(
@@ -339,7 +209,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      * @param type
      * @param errorMessage
      */
-    private void postEvent(int type, String errorMessage, InformacionSaldo informacionSaldo,ArrayList<Servicio> listServicios) {
+    private void postEvent(int type, String errorMessage, InformacionSaldo informacionSaldo, ArrayList<Servicio> listServicios) {
         SaldoScreenEvent saldoScreenEvent = new SaldoScreenEvent();
         saldoScreenEvent.setEventType(type);
         if (errorMessage != null) {
@@ -399,7 +269,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
      */
     private void postEvent(int type, ArrayList<Servicio> listServicios) {
 
-        postEvent(type, null,null, listServicios);
+        postEvent(type, null, null, listServicios);
 
     }
 }

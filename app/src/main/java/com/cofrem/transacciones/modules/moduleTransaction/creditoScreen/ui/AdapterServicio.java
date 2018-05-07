@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.cofrem.transacciones.R;
 import com.cofrem.transacciones.models.Servicio;
+import org.androidannotations.annotations.Click;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,12 @@ public class AdapterServicio extends BaseAdapter {
         for (int i = 0; i < servicios.size(); i++) {
             items.add(servicios.get(i));
         }
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        //Write your code here......
+        return super.isEnabled(position);
     }
 
     @Override

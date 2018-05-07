@@ -93,13 +93,14 @@ public class CreditoScreenRepositoryImpl implements CreditoScreenRepository {
 
                             JsonArray servicios = data.get("servicios").getAsJsonArray();
                             int sizeArray = servicios.size();
+
                             for(int i = 0; i<sizeArray;i++){
                                 JsonObject js3 = (JsonObject) servicios.get(i);
                                 Servicio servicio = new Servicio();
 
                                 servicio.setCodigo(js3.get("codigo_servicio").getAsString());
                                 servicio.setDescripcion(toTextCase(js3.get("descripcion").getAsString().toLowerCase()));
-                                servicio.setValor("$ "+js3.get("saldo").getAsString());
+                                servicio.setValor("$"+js3.get("saldo").getAsString());
 
                                 listServicios.add(servicio);
                             }

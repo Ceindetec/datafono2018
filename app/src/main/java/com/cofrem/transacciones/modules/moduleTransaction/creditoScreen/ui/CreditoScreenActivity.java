@@ -8,6 +8,8 @@ import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,11 +43,12 @@ import org.androidannotations.annotations.Touch;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static android.view.KeyEvent.KEYCODE_ENTER;
 
 @EActivity(R.layout.activity_transaction_credito_screen)
-public class CreditoScreenActivity extends Activity implements CreditoScreenView {
+public class CreditoScreenActivity extends Activity implements CreditoScreenView, AdapterServicioNew.OnItemClickListener {
 
     /*
       #############################################################################################
@@ -93,7 +96,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
 
     @ViewById
-    ListView lvCreditoTransactionServicios;
+    RecyclerView lvCreditoTransactionServicios;
 
     //Paso transaction_credito_paso_valor_compra
     @ViewById
@@ -146,6 +149,8 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
     //Instanciamiento de la interface SaldoScreenPresenter
     private CreditoScreenPresenter creditoScreenPresenter;
 
+    private AdapterServicioNew adapterServicioNew;
+
 
     /**
      * #############################################################################################
@@ -180,6 +185,17 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
         //Primera ventana visible
         bodyContentCreditoValorCompra.setVisibility(View.VISIBLE);
+
+        adapterServicioNew = new AdapterServicioNew(this);
+
+        lvCreditoTransactionServicios = (RecyclerView) findViewById(R.id.lvCreditoTransactionServicios);
+
+        LinearLayoutManager linearLayout = new LinearLayoutManager(this);
+
+        lvCreditoTransactionServicios.setLayoutManager(linearLayout);
+
+        lvCreditoTransactionServicios.setAdapter(adapterServicioNew);
+
     }
 
     /*
@@ -363,15 +379,17 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
                 listaAdapter.add(new Servicio(servicio.getCodigo(), servicio.getDescripcion(), servicio.getValor(), imagen));
             }
 
-            AdapterServicio adapter = new AdapterServicio(this, listaAdapter);
+            //AdapterServicio adapter = new AdapterServicio(this, listaAdapter);
 
-            lvCreditoTransactionServicios.setAdapter(adapter);
+            adapterServicioNew.swapData(listaAdapter);
 
             //Oculta la vista de deslizar tarjeta
             bodyContentCreditoDesliceTarjeta.setVisibility(View.GONE);
 
             //Muestra la vista de contraseña de usuario
             bodyContentCreditoSelectServicio.setVisibility(View.VISIBLE);
+
+            modelTransaccion.setCantidadServicios(listaAdapter.size());
         }
 
 
@@ -676,7 +694,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
     @Click(R.id.btnCreditoTransactionValorCompraBotonAceptar)
     public void registrarValorConsumo() {
 
-        //Se obtiene el texto del valor del consumo
+        //Se obtiene el item_servicio_texto del valor del consumo
         String valorCompra = edtCreditoTransactionValorCompraValor.getText().toString();
 
         valorCompra = valorCompra.replace(".", "");
@@ -725,7 +743,7 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
     @Click(R.id.btnCreditoTransactionNumeroDocumentoBotonAceptar)
     public void registrarNumeroDocumento() {
 
-        //Se obtiene el texto de la contraseña
+        //Se obtiene el item_servicio_texto de la contraseña
         String numeroDocumento = edtCreditoTransactionNumeroDocumentoValor.getText().toString();
 
         //Vacia la caja de numero de documento
@@ -886,32 +904,13 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
     }
 
-
-    @ItemClick(R.id.lvCreditoTransactionServicios)
-    void serviciosListItemCliced(Servicio servicio) {
-
-        //Actualiza el paso actual
-        pasoTransaccion = PASO_CLAVE_USUARIO;
-
-        modelTransaccion.addServicio(servicio.getCodigo());
-
-        //Oculta la vista de seleccion de servicio
-        bodyContentCreditoSelectServicio.setVisibility(View.GONE);
-
-        //Muestra la vista de password usuario
-        bodyContentCreditoPassUsuario.setVisibility(View.VISIBLE);
-
-
-    }
-
-
     /**
      * Metodo para registrar la contraseña del usuario
      */
     @Click(R.id.btnCreditoTransactionClaveUsuarioBotonAceptar)
     public void registrarClaveUsuario() {
 
-        //Se obtiene el texto de la contraseña
+        //Se obtiene el item_servicio_texto de la contraseña
         String passwordUser = edtCreditoTransactionClaveUsuarioContenidoClave.getText().toString();
 
         //Vacia la caja de contraseña
@@ -977,6 +976,78 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
                 navigateToTransactionScreen();
             }
         }, timer);
+    }
+
+    @Override
+    public void onClickItemServicio(Servicio servicio, int paramPosition) {
+
+        Log.e("Id Servicio", String.valueOf(paramPosition));
+
+        List<String> listaServicio = modelTransaccion.getListaServicios();
+
+        if (listaServicio.size() > 0) {
+
+            if (!listaServicio.contains(servicio.getCodigo())) {
+                modelTransaccion.addServicio(servicio.getCodigo());
+                consumoMenorSaldo(servicio.getValor());
+            }
+
+        } else {
+            modelTransaccion.addServicio(servicio.getCodigo());
+            consumoMenorSaldo(servicio.getValor());
+        }
+
+        //lvCreditoTransactionServicios.getChildAt(paramPosition).setEnabled(false);
+
+        Log.e("servicios", modelTransaccion.getServicios());
+
+    }
+
+    @Override
+    public void onLongClickItemServicio(Servicio servicio, int paramPosition) {
+
+        Log.e("Id Servicio sostenido", String.valueOf(paramPosition));
+
+        modelTransaccion.removeServicio(servicio.getCodigo());
+
+        //lvCreditoTransactionServicios.getChildAt(paramPosition).setEnabled(true);
+        Log.e("servicios", modelTransaccion.getServicios());
+
+    }
+
+    private void consumoMenorSaldo(String saldoServicio){
+
+        String saldoString = saldoServicio;
+        saldoString = saldoString.replace(".", "");
+        saldoString = saldoString.replace(",", "");
+        saldoString = saldoString.replace("$", "");
+
+        int saldo = Integer.parseInt(saldoString);
+
+        if(modelTransaccion.getValor()<saldo){
+
+            //Actualiza el paso actual
+            pasoTransaccion = PASO_CLAVE_USUARIO;
+
+
+            //Oculta la vista de seleccion de servicio
+            bodyContentCreditoSelectServicio.setVisibility(View.GONE);
+
+            //Muestra la vista de password usuario
+            bodyContentCreditoPassUsuario.setVisibility(View.VISIBLE);
+
+        }else{
+
+            if(modelTransaccion.getCantidadServicios()==modelTransaccion.getListaServicios().size()){
+
+
+                handleMostrarErrorEnVista(this.getResources().getString(
+                        R.string.transaction_text_saldo_insuficiente));
+            }
+
+        }
+
+
     }
 
 }

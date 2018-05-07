@@ -1,5 +1,9 @@
 package com.cofrem.transacciones.models;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class Transaccion {
 
 
@@ -83,12 +87,17 @@ public class Transaccion {
 
     private String registro;
     private int estado;
+    private int cantidadServicios;
+
+
+    private List<String> listaServicios;
 
     /**
      * Constructor vacio de la clase
      */
     public Transaccion() {
         servicios = "";
+        this.listaServicios = new ArrayList<>();
     }
 
     public Transaccion(
@@ -114,6 +123,8 @@ public class Transaccion {
         this.tipo_transaccion = tipo_transaccion;
         this.registro = registro;
         this.estado = estado;
+
+        this.listaServicios = new ArrayList<>();
     }
 
     public int getId() {
@@ -157,6 +168,17 @@ public class Transaccion {
     }
 
     public String getServicios() {
+
+        servicios="";
+
+        for(String servicio:listaServicios){
+            if(servicios.equals("")){
+                servicios = servicio;
+            }else{
+                servicios += "," + servicio;
+            }
+        }
+
         return servicios;
     }
 
@@ -164,12 +186,28 @@ public class Transaccion {
         this.servicios = servicios;
     }
 
-    public void addServicio(String servicios) {
-        if(this.servicios.equals(""))
-            this.servicios = this.servicios + servicios;
-        else
-            this.servicios = this.servicios + "," + servicios;
+    public void addServicio(String servicio) {
+
+        this.listaServicios.add(servicio);
+
     }
+
+    public List<String> getListaServicios(){
+
+        return listaServicios;
+
+    }
+
+    public void removeServicio(String servicio){
+
+        for(int i=0; i < listaServicios.size();i++){
+            if(listaServicios.get(i).equals(servicio)){
+                listaServicios.remove(i);
+            }
+        }
+
+    }
+
 
     public int getValor() {
         return valor;
@@ -237,5 +275,13 @@ public class Transaccion {
 
     public String getFullFechaServer() {
         return fecha_server + " " + hora_server;
+    }
+
+    public int getCantidadServicios() {
+        return cantidadServicios;
+    }
+
+    public void setCantidadServicios(int cantidadServicios) {
+        this.cantidadServicios = cantidadServicios;
     }
 }
