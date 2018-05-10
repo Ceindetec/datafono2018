@@ -149,7 +149,7 @@ public class CreditoScreenPresenterImpl implements CreditoScreenPresenter {
                     creditoScreenInteractor.consultarServicios(context, transaccion);
                     intentos++;
                 }else{
-                    onImprimirError(creditoScreenEvent.getErrorMessage());
+                    onTransaccionConError(creditoScreenEvent.getErrorMessage());
                 }
                 break;
             case CreditoScreenEvent.onTransaccionConError:
@@ -279,7 +279,7 @@ public class CreditoScreenPresenterImpl implements CreditoScreenPresenter {
 
     private void onTransaccionConError(String errorMessage) {
         if (creditoScreenView != null) {
-            creditoScreenView.handleTransaccionConError(errorMessage);
+            creditoScreenView.handleMostrarErrorEnVista(errorMessage);
         }
     }
 

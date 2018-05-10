@@ -94,8 +94,8 @@ public class SaldoScreenPresenterImpl implements SaldoScreenPresenter {
                 onTransaccionSuccess(saldoScreenEvent.getListServicios());
                 break;
 
-            case SaldoScreenEvent.onTransaccionWSRegisterError:
-                onTransaccionWSRegisterError(saldoScreenEvent.getErrorMessage());
+            case SaldoScreenEvent.onTransaccionError:
+                onTransaccionError(saldoScreenEvent.getErrorMessage());
                 break;
 
             case SaldoScreenEvent.onTransaccionWSConexionError:
@@ -129,9 +129,9 @@ public class SaldoScreenPresenterImpl implements SaldoScreenPresenter {
         }
     }
 
-    private void onTransaccionWSRegisterError(String errorMessage) {
+    private void onTransaccionError(String errorMessage) {
         if (saldoScreenView != null) {
-            saldoScreenView.handleTransaccionWSRegisterError(errorMessage);
+            saldoScreenView.handleTransaccionError(errorMessage);
         }
     }
 

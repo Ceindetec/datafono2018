@@ -186,8 +186,8 @@ public class ReimpresionScreenPresenterImpl implements ReimpresionScreenPresente
             case ReimpresionScreenEvent.onCierreLoteError:
                 onCierreDeLoteError(reimpresionScreenEvent.getErrorMessage());
                 break;
-            case ReimpresionScreenEvent.onTransaccionWSConexionError:
-                onTransaccionWSConexionError(reimpresionScreenEvent.getErrorMessage());
+            case ReimpresionScreenEvent.onTransaccionError:
+                onTransaccionError(reimpresionScreenEvent.getErrorMessage());
                 break;
 
         }
@@ -281,7 +281,7 @@ public class ReimpresionScreenPresenterImpl implements ReimpresionScreenPresente
         reimpresionScreenView.handleCierreDeLoteError(error);
     }
 
-    private void onTransaccionWSConexionError(String error) {
+    private void onTransaccionError(String error) {
         reimpresionScreenView.handleTransaccionWSConexionError(error);
     }
 }

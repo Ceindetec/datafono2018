@@ -111,7 +111,7 @@ public class CreditoScreenRepositoryImpl implements CreditoScreenRepository {
                             switch (data.get("codigo").getAsInt()){
 
                                 case ApiWS.CODIGO_DOCUMENTIO_INCORRECTO:
-                                    postEvent(CreditoScreenEvent.onDocumentoIncorrecto,data.get("mensaje").getAsString());
+                                    postEvent(CreditoScreenEvent.onTransaccionConError,data.get("mensaje").getAsString());
                                     break;
                                 case ApiWS.CODIGO_CAMBIO_CLAVE:
                                     postEvent(CreditoScreenEvent.onCambioDeClaveObligatorio,data.get("mensaje").getAsString());

@@ -97,7 +97,7 @@ public class AnulacionScreenRepositoryImpl implements AnulacionScreenRepository 
 
                     @Override
                     public void onError(String errorMessage) {
-                        postEvent(AnulacionScreenEvent.onClaveAdministracionError);
+                        postEvent(AnulacionScreenEvent.onTransaccionError,errorMessage);
                     }
 
                 });

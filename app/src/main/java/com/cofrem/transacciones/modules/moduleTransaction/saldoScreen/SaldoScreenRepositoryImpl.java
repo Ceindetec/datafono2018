@@ -109,7 +109,7 @@ public class SaldoScreenRepositoryImpl implements SaldoScreenRepository {
                             postEvent(SaldoScreenEvent.onTransaccionSuccess, listServicios);
                         } else {
 
-                            postEvent(SaldoScreenEvent.onTransaccionWSRegisterError, data.get("mensaje").getAsString());
+                            postEvent(SaldoScreenEvent.onTransaccionError, data.get("mensaje").getAsString());
 
                         }
                     }

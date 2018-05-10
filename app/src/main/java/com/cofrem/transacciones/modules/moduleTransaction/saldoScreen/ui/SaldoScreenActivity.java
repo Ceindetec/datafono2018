@@ -380,13 +380,13 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
      * Metodo para manejar la verificacion exitosa
      */
     @Override
-    public void handleTransaccionWSRegisterError(String errorMessage) {
+    public void handleTransaccionWSConexionError() {
 
         //Oculta la barra de progreso
         hideProgress();
 
         //Muestra el mensaje de error del registro de informacion del dispositivo incorrecto
-        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         //Regresa a la vista de transacciones
         navigateToTransactionScreen();
@@ -396,15 +396,17 @@ public class SaldoScreenActivity extends Activity implements SaldoScreenView {
      * Metodo para manejar la verificacion exitosa
      */
     @Override
-    public void handleTransaccionWSConexionError() {
+    public void handleTransaccionError(String error) {
 
         //Oculta la barra de progreso
         hideProgress();
 
         //Oculta la vista del Host de conexion
-        bodyContentSaldoPassUsuario.setVisibility(View.GONE);
+        inicializarOcultamientoVistas();
 
-        //Muestra la vista del Port de conexion
+        txvSaldoTransactionErrorDetalleTexto.setText(error);
+
+        //Muestra la vista de error
         bodyContentSaldoTransaccionErronea.setVisibility(View.VISIBLE);
 
         //Actualiza el paso actual

@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/headerContent"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <include
         android:id="@+id/bodyContentReimpresionReciboClaveAdministrador"
@@ -101,5 +101,13 @@
         android:layout_height="match_parent"
         android:layout_below="@id/headerContent"
         android:visibility="gone" />
+
+    <include
+            android:id="@+id/bodyContentTransaccionErronea"
+            layout="@layout/content_report_reporte_transaccion_error"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/headerContent"
+            android:visibility="visible" />
 
 </RelativeLayout>

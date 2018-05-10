@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class SaldoScreenEvent {
 
     public final static int onTransaccionSuccess = 0;
-    public final static int onTransaccionWSRegisterError = 1;
+    public final static int onTransaccionError = 1;
     public final static int onTransaccionWSConexionError = 2;
     public final static int onImprecionReciboSuccess = 3;
     public final static int onImprecionReciboError = 4;

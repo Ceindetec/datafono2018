@@ -78,6 +78,8 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
     RelativeLayout bodyContentCierreLoteImpresion;
     @ViewById
     RelativeLayout bodyContentReimpresionReciboClaveAdministrador;
+    @ViewById
+    RelativeLayout bodyContentTransaccionErronea;
 
     @ViewById
     EditText edtReportReimprimeonReciboNummeroCargoContenidoClave;
@@ -91,6 +93,9 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
 
     @ViewById
     FrameLayout frlPgbHldReimpresionRecibo;
+
+    @ViewById
+    TextView txvReporteTansaccionErrorDetalleTexto;
 
     Transaccion modelTransaccion;
 
@@ -405,8 +410,16 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
 
     @Override
     public void handleTransaccionWSConexionError(String error) {
+
         hideProgress();
-        Toast.makeText(this, R.string.configuration_text_informacion_dispositivo_error_conexion, Toast.LENGTH_LONG).show();
+
+        inicializarOcultamientoVistas();
+
+        txvReporteTansaccionErrorDetalleTexto.setText(error);
+
+        bodyContentTransaccionErronea.setVisibility(View.VISIBLE);
+
+//        Toast.makeText(this, R.string.configuration_text_informacion_dispositivo_error_conexion, Toast.LENGTH_LONG).show();
     }
 
     /**
@@ -469,6 +482,8 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
         bodyContentCierreLoteClaveDispositivo.setVisibility(View.GONE);
         bodyContentCierreLoteVerificacion.setVisibility(View.GONE);
         bodyContentCierreLoteImpresion.setVisibility(View.GONE);
+        bodyContentReimpresionReciboClaveAdministrador.setVisibility(View.GONE);
+        bodyContentTransaccionErronea.setVisibility(View.GONE);
 
     }
 
@@ -643,17 +658,15 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
     }
 
     @Click(R.id.btnReportCierreLoteClaveDispositivoBotonAceptar)
-    public  void  cierreDeLote(){
+    public void cierreDeLote() {
         showProgress();
         reimpresionScreenPresenter.cierreDeLote(this);
     }
 
     @Click(R.id.btnReportCierreLoteImpresionBotonImprimir)
-    public  void imprimirCierreLote(){
+    public void imprimirCierreLote() {
         reimpresionScreenPresenter.imprimirCierreLote(this);
     }
-
-
 
 
     @Click({R.id.btnTransactionScreenBack
@@ -662,7 +675,9 @@ public class ReimpresionScreenActivity extends Activity implements ReimpresionSc
             , R.id.btnReportCierreLoteClaveDispositivoBotonCancelar
             , R.id.btnReportCierreLoteImpresionBotonSalir
             , R.id.btnReportReimprimeonReciboNummeroCargoBotonCancelar
-            , R.id.btnReportReimpresionReciboClaveAdministradorBotonCancelar})
+            , R.id.btnReportReimpresionReciboClaveAdministradorBotonCancelar
+            , R.id.btnReporteTansaccionErrorBotonSalir
+    })
     public void regresarDesdeReimpimirRecibo() {
         Intent intent = new Intent(this, ReportScreenActivity_.class);
         startActivity(intent);

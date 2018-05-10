@@ -25,13 +25,13 @@
         android:text="@string/transaction_text_title_error" />
 
     <ImageView
-        android:id="@+id/imvCreditoTransactionErrorTarjetaStripeCard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txvCreditoTransactionErrorTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:src="@mipmap/stripe_card" />
+            android:id="@+id/imvCreditoTransactionErrorTarjetaStripeCard"
+            android:layout_width="wrap_content"
+            android:layout_height="113dp"
+            android:layout_below="@id/txvCreditoTransactionErrorTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dp"
+            android:src="@mipmap/stripe_card"/>
 
     <TextView
         android:id="@+id/txvCreditoTransactionErrorMensaje"

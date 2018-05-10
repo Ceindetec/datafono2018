@@ -15,7 +15,7 @@ public interface SaldoScreenView {
     /**
      * Metodo para manejar la verificacion exitosa
      */
-    void handleTransaccionWSRegisterError(String errorMessage);
+    void handleTransaccionError(String errorMessage);
 
     /**
      * Metodo para manejar la verificacion exitosa

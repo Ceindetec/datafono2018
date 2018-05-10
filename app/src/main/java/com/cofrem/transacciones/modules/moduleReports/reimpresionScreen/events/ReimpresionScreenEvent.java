@@ -28,7 +28,7 @@ public class ReimpresionScreenEvent {
 
     public final static int onCierreLoteSuccess = 19;
     public final static int onCierreLoteError = 20;
-    public final static int onTransaccionWSConexionError = 21;
+    public final static int onTransaccionError = 21;
 
 
     // Variable que maneja los tipos de eventos

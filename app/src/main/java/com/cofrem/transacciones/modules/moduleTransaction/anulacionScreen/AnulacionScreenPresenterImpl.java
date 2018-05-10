@@ -146,7 +146,7 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
                 onAnularSuccess(anulacionScreenEvent.getInformacionTransaccion());
                 break;
 
-            case AnulacionScreenEvent.onTransaccionAnulacionError:
+            case AnulacionScreenEvent.onTransaccionError:
                 onTransaccionError(anulacionScreenEvent.getErrorMessage());
                 break;
             case AnulacionScreenEvent.onImprecionReciboError:

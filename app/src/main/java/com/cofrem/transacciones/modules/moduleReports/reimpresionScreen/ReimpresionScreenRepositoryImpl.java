@@ -128,7 +128,7 @@ public class ReimpresionScreenRepositoryImpl implements ReimpresionScreenReposit
                 }
             } else {
                 //Error en la conexion con el Web Service
-                postEvent(ReimpresionScreenEvent.onTransaccionWSConexionError);
+                postEvent(ReimpresionScreenEvent.onTransaccionError);
                 return;
             }
         }
@@ -445,8 +445,8 @@ public class ReimpresionScreenRepositoryImpl implements ReimpresionScreenReposit
                     }
 
                     @Override
-                    public void onError(String errorMessage) {
-                        postEvent(ReimpresionScreenEvent.onVerifyClaveAdministradorError);
+                    public void onError(String onTransaccionError) {
+                        postEvent(ReimpresionScreenEvent.onTransaccionError, onTransaccionError);
                     }
 
                 });
@@ -878,6 +878,17 @@ public class ReimpresionScreenRepositoryImpl implements ReimpresionScreenReposit
     private void postEvent(int type) {
 
         postEvent(type, null, null, null);
+
+    }
+
+    /**
+     * Sobrecarga del metodo postevent
+     *
+     * @param type
+     */
+    private void postEvent(int type,String error) {
+
+        postEvent(type, error, null, null);
 
     }
 }
