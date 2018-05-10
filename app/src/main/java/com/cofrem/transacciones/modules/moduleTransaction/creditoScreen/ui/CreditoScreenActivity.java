@@ -151,6 +151,8 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
     private AdapterServicioNew adapterServicioNew;
 
+    private int saldoServicios = 0;
+
 
     /**
      * #############################################################################################
@@ -1024,7 +1026,9 @@ public class CreditoScreenActivity extends Activity implements CreditoScreenView
 
         int saldo = Integer.parseInt(saldoString);
 
-        if(modelTransaccion.getValor()<saldo){
+        saldoServicios += saldo;
+
+        if(modelTransaccion.getValor() < saldoServicios){
 
             //Actualiza el paso actual
             pasoTransaccion = PASO_CLAVE_USUARIO;
