@@ -149,6 +149,9 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
             case AnulacionScreenEvent.onTransaccionError:
                 onTransaccionError(anulacionScreenEvent.getErrorMessage());
                 break;
+                case AnulacionScreenEvent.onTransaccionAnulacionError:
+                onTransaccionErrorToast(anulacionScreenEvent.getErrorMessage());
+                break;
             case AnulacionScreenEvent.onImprecionReciboError:
 
                 break;
@@ -220,6 +223,12 @@ public class AnulacionScreenPresenterImpl implements AnulacionScreenPresenter {
     private void onTransaccionError(String errorMessage) {
         if (anulacionScreenView != null) {
             anulacionScreenView.handleTransaccionError(errorMessage);
+        }
+    }
+
+    private void onTransaccionErrorToast(String errorMessage) {
+        if (anulacionScreenView != null) {
+            anulacionScreenView.handleTransaccionErrorToast(errorMessage);
         }
     }
 

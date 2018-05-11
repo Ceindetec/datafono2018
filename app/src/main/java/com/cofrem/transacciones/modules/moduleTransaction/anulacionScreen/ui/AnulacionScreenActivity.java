@@ -500,6 +500,16 @@ public class AnulacionScreenActivity extends Activity implements AnulacionScreen
         bodyContentAnulacionTransaccionErronea.setVisibility(View.VISIBLE);
 
     }
+    @Override
+    public void handleTransaccionErrorToast(String errorMessage) {
+
+        //Oculta la barra de progreso
+        hideProgress();
+
+        //Muestra el mensaje de error en el  monto de transaccion registrado
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+
+    }
 
 /*
       #############################################################################################

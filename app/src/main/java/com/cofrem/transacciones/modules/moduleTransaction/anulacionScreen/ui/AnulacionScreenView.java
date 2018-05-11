@@ -39,6 +39,11 @@ public interface AnulacionScreenView {
     void handleTransaccionError(String errorMessage);
 
     /**
+     * Metodo para manejar la transaccion con error
+     */
+    void handleTransaccionErrorToast(String errorMessage);
+
+    /**
      * Metodo para manejar la el valor no valido en la transaccion
      */
     void handleTransaccionWSConexionError();

@@ -240,7 +240,7 @@ public class AnulacionScreenRepositoryImpl implements AnulacionScreenRepository 
 
         int gray = configurationPrinter.getGray_level();
 
-        Transaccion modelTransaccionAnulada = AppDatabase.getInstance(context).obtenerUltimaTransaccionAnulada();
+        Transaccion modelTransaccion = AppDatabase.getInstance(context).obtenerUltimaTransaccionAnulada();
 
 //        String fecha_transaccion = AppDatabase.getInstance(context).obtenerFechaTransaccionNumCargo(modelTransaccion.getNumero_cargo());
 
@@ -265,7 +265,7 @@ public class AnulacionScreenRepositoryImpl implements AnulacionScreenRepository 
 //        printRows.add(new PrintRow(context.getResources().getString(
 //                R.string.recibo_fecha),fecha_transaccion, new StyleConfig(StyleConfig.Align.LEFT, gray)));
         printRows.add(new PrintRow(context.getResources().getString(
-                R.string.recibo_fecha_anulacion), modelTransaccionAnulada.getFullFechaServer(), new StyleConfig(StyleConfig.Align.LEFT, gray, 20)));
+                R.string.recibo_fecha_anulacion), modelTransaccion.getFullFechaServer(), new StyleConfig(StyleConfig.Align.LEFT, gray, 20)));
 
         printRows.add(new PrintRow(context.getResources().getString(
                 R.string.recibo_separador_afiliado), new StyleConfig(StyleConfig.Align.LEFT, gray, StyleConfig.FontSize.F1)));
@@ -280,7 +280,7 @@ public class AnulacionScreenRepositoryImpl implements AnulacionScreenRepository 
         printRows.add(new PrintRow(context.getResources().getString(
                 R.string.recibo_separador_detalle), new StyleConfig(StyleConfig.Align.LEFT, gray, StyleConfig.FontSize.F1)));
         printRows.add(new PrintRow(context.getResources().getString(
-                R.string.recibo_valor_anulado), PrintRow.numberFormat(modelTransaccionAnulada.getValor()), new StyleConfig(StyleConfig.Align.LEFT, gray)));
+                R.string.recibo_valor_anulado), PrintRow.numberFormat(modelTransaccion.getValor()), new StyleConfig(StyleConfig.Align.LEFT, gray)));
 
 
         printRows.add(new PrintRow(context.getResources().getString(
@@ -295,9 +295,9 @@ public class AnulacionScreenRepositoryImpl implements AnulacionScreenRepository 
         int status = new PrinterHandler().imprimerTexto(printRows);
 
         if (status == InfoGlobalSettingsPrint.PRINTER_OK) {
-            int i = 0;
+            postEvent(AnulacionScreenEvent.onImprecionReciboSuccess);
         } else {
-            int i = 1;
+            postEvent(AnulacionScreenEvent.onImprecionReciboError, PrinterHandler.stringErrorPrinter(status, context));
         }
 
 
